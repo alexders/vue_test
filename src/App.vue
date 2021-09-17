@@ -4,14 +4,14 @@
  * @Author: sueRimn
  * @Date: 2021-09-11 23:19:19
  * @LastEditors: sueRimn
- * @LastEditTime: 2021-09-16 22:23:05
+ * @LastEditTime: 2021-09-17 21:27:52
 -->
 <template>
   <div id="root">
   <div class="todo-container">
     <div class="todo-wrap">
-      <my-header></my-header>
-      <my-list></my-list>
+      <my-header :addTodo='addTodo'></my-header>
+      <my-list :todos='todos'></my-list>
       <my-footer></my-footer>
     </div>
   </div>
@@ -28,6 +28,21 @@ import MyFooter from "./components/MyFooter.vue";
 export default {
   name: "App",
   components: { MyHeader,MyList, MyFooter},
+   data() {
+   return{
+     todos:[
+       {id:'0001',title:'吃饭',done:true},
+       {id:'0002',title:'喝酒',done:false},
+       {id:'0003',title:'烫头',done:true},
+     ]
+   }
+ },
+  methods:{
+   addTodo( todoObj){
+    // console.log('我是APP组件，我收到了其他组件的消息'+todoObj);
+    this.todos.unshift(todoObj);
+   }
+ }
 };
 </script>
 
@@ -73,99 +88,6 @@ body {
   padding: 10px;
   border: 1px solid #ddd;
   border-radius: 5px;
-}
-
-/*header*/
-.todo-header input {
-  width: 560px;
-  height: 28px;
-  font-size: 14px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  padding: 4px 7px;
-}
-
-.todo-header input:focus {
-  outline: none;
-  border-color: rgba(82, 168, 236, 0.8);
-  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6);
-}
-
-/*main*/
-.todo-main {
-  margin-left: 0px;
-  border: 1px solid #ddd;
-  border-radius: 2px;
-  padding: 0px;
-}
-
-.todo-empty {
-  height: 40px;
-  line-height: 40px;
-  border: 1px solid #ddd;
-  border-radius: 2px;
-  padding-left: 5px;
-  margin-top: 10px;
-}
-/*item*/
-li {
-  list-style: none;
-  height: 36px;
-  line-height: 36px;
-  padding: 0 5px;
-  border-bottom: 1px solid #ddd;
-}
-
-li label {
-  float: left;
-  cursor: pointer;
-}
-
-li label li input {
-  vertical-align: middle;
-  margin-right: 6px;
-  position: relative;
-  top: -1px;
-}
-
-li button {
-  float: right;
-  display: none;
-  margin-top: 3px;
-}
-
-li:before {
-  content: initial;
-}
-
-li:last-child {
-  border-bottom: none;
-}
-
-/*footer*/
-.todo-footer {
-  height: 40px;
-  line-height: 40px;
-  padding-left: 6px;
-  margin-top: 5px;
-}
-
-.todo-footer label {
-  display: inline-block;
-  margin-right: 20px;
-  cursor: pointer;
-}
-
-.todo-footer label input {
-  position: relative;
-  top: -1px;
-  vertical-align: middle;
-  margin-right: 5px;
-}
-
-.todo-footer button {
-  float: right;
-  margin-top: 5px;
 }
 
 </style>

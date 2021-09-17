@@ -4,11 +4,11 @@
  * @Author: sueRimn
  * @Date: 2021-09-12 16:15:08
  * @LastEditors: sueRimn
- * @LastEditTime: 2021-09-16 23:49:20
+ * @LastEditTime: 2021-09-17 21:14:56
 -->
 <template>
  <ul class="todo-main">
-     <my-item></my-item>
+     <my-item v-for="todoObj in todos" :key="todoObj.id" :todo="todoObj"></my-item>
  </ul>
 </template>
 
@@ -16,10 +16,26 @@
 import  MyItem  from './MyItem.vue'
 export default {
     name:'MyList',
-    components: {MyItem}
+    components: {MyItem},
+    props:['todos']
 }
 </script>
 
 <style>
+/*main*/
+.todo-main {
+  margin-left: 0px;
+  border: 1px solid #ddd;
+  border-radius: 2px;
+  padding: 0px;
+}
 
+.todo-empty {
+  height: 40px;
+  line-height: 40px;
+  border: 1px solid #ddd;
+  border-radius: 2px;
+  padding-left: 5px;
+  margin-top: 10px;
+}
 </style>

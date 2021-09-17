@@ -4,7 +4,7 @@
  * @Author: sueRimn
  * @Date: 2021-09-16 21:06:59
  * @LastEditors: sueRimn
- * @LastEditTime: 2021-09-16 22:23:20
+ * @LastEditTime: 2021-09-17 16:34:36
 -->
 <template>
 <div class="todo-footer">
@@ -25,5 +25,29 @@ export default {
 </script>
 
 <style>
+/*footer*/
+.todo-footer {
+  height: 40px;
+  line-height: 40px;
+  padding-left: 6px;
+  margin-top: 5px;
+}
 
+.todo-footer label {
+  display: inline-block;
+  margin-right: 20px;
+  cursor: pointer;
+}
+
+.todo-footer label input {
+  position: relative;
+  top: -1px;
+  vertical-align: middle;
+  margin-right: 5px;
+}
+
+.todo-footer button {
+  float: right;
+  margin-top: 5px;
+}
 </style>
