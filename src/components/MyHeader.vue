@@ -4,30 +4,39 @@
  * @Author: sueRimn
  * @Date: 2021-09-12 16:14:43
  * @LastEditors: sueRimn
- * @LastEditTime: 2021-09-17 21:27:21
+ * @LastEditTime: 2021-09-17 21:40:45
 -->
 <template>
-<div class="todo-header">
-  <input type="text" placeholder="请输入你的任务名称，按回车键确认"  @keyup.enter="add"/>
-</div>
+  <div class="todo-header">
+    <input
+      type="text"
+      placeholder="请输入你的任务名称，按回车键确认"
+      @keyup.enter="add"
+    />
+  </div>
 </template>
 
 <script>
-import { nanoid } from 'nanoid'
+import { nanoid } from "nanoid";
 export default {
-    name:'MyHeader',
-    props:['addTodo'],
-    methods: {
-      add(e){
-        //将用户输入转换成一个对象
-        //console.log(e.target.value);
-        const todoObj= {id:nanoid(),title:e.target.value,done:false}
-        //给父组件发消息
-        this.addTodo(todoObj);
-      // console.log(todoObj);
+  name: "MyHeader",
+  props: ["addTodo"],
+  methods: {
+    add(e) {
+      //将用户输入转换成一个对象
+      //console.log(e.target.value);
+      const todoObj = { id: nanoid(), title: e.target.value, done: false };
+      //为空不添加
+      if (!e.target.value.trim()) {
+        return alert("请输入内容");
       }
+      //通知APP组件去添加一个todo
+      this.addTodo(todoObj);
+      // console.log(todoObj);
+       e.target.value='';
     },
-}
+  },
+};
 </script>
 
 <style>
@@ -44,7 +53,7 @@ export default {
 .todo-header input:focus {
   outline: none;
   border-color: rgba(82, 168, 236, 0.8);
-  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075),
+    0 0 8px rgba(82, 168, 236, 0.6);
 }
-
 </style>

@@ -4,14 +4,14 @@
  * @Author: sueRimn
  * @Date: 2021-09-11 23:19:19
  * @LastEditors: sueRimn
- * @LastEditTime: 2021-09-17 21:27:52
+ * @LastEditTime: 2021-09-17 22:21:12
 -->
 <template>
   <div id="root">
   <div class="todo-container">
     <div class="todo-wrap">
       <my-header :addTodo='addTodo'></my-header>
-      <my-list :todos='todos'></my-list>
+      <my-list :todos='todos' :checkTodo='checkTodo'></my-list>
       <my-footer></my-footer>
     </div>
   </div>
@@ -38,9 +38,18 @@ export default {
    }
  },
   methods:{
+      //往前添加一个数据
    addTodo( todoObj){
-    // console.log('我是APP组件，我收到了其他组件的消息'+todoObj);
-    this.todos.unshift(todoObj);
+      this.todos.unshift(todoObj);
+   },
+   //勾选or取消勾选todo
+   checkTodo(id){
+     //遍历数组
+     this.todos.forEach((todo)=>{
+       if (todo.id===id) {  //对比id一样的勾选项
+         todo.done =!todo.done  //将done值取反
+       }
+     })
    }
  }
 };

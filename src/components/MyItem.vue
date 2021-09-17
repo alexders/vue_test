@@ -4,12 +4,12 @@
  * @Author: sueRimn
  * @Date: 2021-09-16 21:06:41
  * @LastEditors: sueRimn
- * @LastEditTime: 2021-09-17 17:38:06
+ * @LastEditTime: 2021-09-17 22:27:12
 -->
 <template>
  <li>
    <label>
-     <input type="checkbox" :checked="todo.done"/>
+     <input type="checkbox" :checked="todo.done" @change="handlerCheck(todo.id)"/>
      <span>{{todo.title}}</span>
    </label>
    <button class="btn btn-danger" style="display:none">删除</button>
@@ -19,7 +19,12 @@
 <script>
 export default {
     name:'MyItem',
-    props:['todo']
+    props:['todo','checkTodo'],
+    methods: {
+      handlerCheck(id){
+        this.checkTodo(id);
+      }
+    },
 }
 </script>
  
