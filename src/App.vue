@@ -4,15 +4,15 @@
  * @Author: sueRimn
  * @Date: 2021-09-11 23:19:19
  * @LastEditors: sueRimn
- * @LastEditTime: 2021-09-17 22:21:12
+ * @LastEditTime: 2021-09-18 17:44:22
 -->
 <template>
   <div id="root">
   <div class="todo-container">
     <div class="todo-wrap">
       <my-header :addTodo='addTodo'></my-header>
-      <my-list :todos='todos' :checkTodo='checkTodo'></my-list>
-      <my-footer></my-footer>
+      <my-list :todos='todos' :checkTodo='checkTodo' :deleteTodo='deleteTodo'></my-list>
+      <my-footer :todos='todos'></my-footer>
     </div>
   </div>
 </div>
@@ -32,7 +32,7 @@ export default {
    return{
      todos:[
        {id:'0001',title:'吃饭',done:true},
-       {id:'0002',title:'喝酒',done:false},
+       {id:'0002',title:'喝酒',done:false}, 
        {id:'0003',title:'烫头',done:true},
      ]
    }
@@ -50,6 +50,12 @@ export default {
          todo.done =!todo.done  //将done值取反
        }
      })
+   },
+   //通知删除数据
+   deleteTodo(id){
+     this.todos=this.todos.filter((todo)=>{
+       return todo.id !== id
+     })
    }
  }
 };
@@ -62,7 +68,7 @@ body {
 }
 
 .btn {
-  display: inline-block;
+  /* display: inline-block; */
   padding: 4px 12px;
   margin-bottom: 0;
   font-size: 14px;

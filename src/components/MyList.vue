@@ -4,7 +4,7 @@
  * @Author: sueRimn
  * @Date: 2021-09-12 16:15:08
  * @LastEditors: sueRimn
- * @LastEditTime: 2021-09-17 22:23:13
+ * @LastEditTime: 2021-09-18 16:56:04
 -->
 <template>
  <ul class="todo-main">
@@ -13,6 +13,7 @@
      :key="todoObj.id" 
      :todo="todoObj"
      :checkTodo='checkTodo'
+     :deleteTodo='deleteTodo'
      ></my-item>
  </ul>
 </template>
@@ -22,7 +23,7 @@ import  MyItem  from './MyItem.vue'
 export default {
     name:'MyList',
     components: {MyItem},
-    props:['todos','checkTodo']
+    props:['todos','checkTodo','deleteTodo']
 }
 </script>
 

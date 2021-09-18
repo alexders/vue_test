@@ -4,7 +4,7 @@
  * @Author: sueRimn
  * @Date: 2021-09-16 21:06:41
  * @LastEditors: sueRimn
- * @LastEditTime: 2021-09-17 22:27:12
+ * @LastEditTime: 2021-09-18 17:00:50
 -->
 <template>
  <li>
@@ -12,19 +12,26 @@
      <input type="checkbox" :checked="todo.done" @change="handlerCheck(todo.id)"/>
      <span>{{todo.title}}</span>
    </label>
-   <button class="btn btn-danger" style="display:none">删除</button>
+   <button class="btn btn-danger" @click="handlerDelete(todo.id)" >删除</button>
  </li>
 </template>
 
 <script>
 export default {
     name:'MyItem',
-    props:['todo','checkTodo'],
+    props:['todo','checkTodo','deleteTodo'],
     methods: {
+      //勾选
       handlerCheck(id){
         this.checkTodo(id);
+      },
+      //删除
+      handlerDelete(id){
+        if (confirm("确定删除么")) {
+         this.deleteTodo(id);
+        }
       }
-    },
+    }
 }
 </script>
  
@@ -63,5 +70,11 @@ li:before {
 li:last-child {
   border-bottom: none;
 }
+li:hover { 
+  background-color: #ddd;
 
+}
+li:hover button{
+  display: block;
+}
 </style>

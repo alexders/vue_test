@@ -4,24 +4,36 @@
  * @Author: sueRimn
  * @Date: 2021-09-16 21:06:59
  * @LastEditors: sueRimn
- * @LastEditTime: 2021-09-17 16:34:36
+ * @LastEditTime: 2021-09-18 17:53:35
 -->
 <template>
-<div class="todo-footer">
-  <label>
-    <input type="checkbox"/>
-  </label>
-  <span>
-    <span>已完成0</span> / 全部2
-  </span>
-  <button class="btn btn-danger">清除已完成任务</button>
-</div>
+  <div class="todo-footer">
+    <label>
+      <input type="checkbox" />
+    </label>
+    <span>
+      <span>已完成{{ doneTotal }}</span> / 全部{{ todos.length }}
+    </span>
+    <button class="btn btn-danger">清除已完成任务</button>
+  </div>
 </template>
 
 <script>
 export default {
-    name:'MyFooter'
-}
+  name: "MyFooter",
+  props: ["todos"],
+  computed: {
+    doneTotal() {
+      let i = 0;
+      this.todos.forEach((todo) => {
+        if (todo.done) {
+          i++;
+        }
+      });
+      return i;
+    },
+  },
+};
 </script>
 
 <style>
