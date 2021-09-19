@@ -4,7 +4,7 @@
  * @Author: sueRimn
  * @Date: 2021-09-11 23:19:19
  * @LastEditors: sueRimn
- * @LastEditTime: 2021-09-18 17:44:22
+ * @LastEditTime: 2021-09-19 20:14:00
 -->
 <template>
   <div id="root">
@@ -12,7 +12,7 @@
     <div class="todo-wrap">
       <my-header :addTodo='addTodo'></my-header>
       <my-list :todos='todos' :checkTodo='checkTodo' :deleteTodo='deleteTodo'></my-list>
-      <my-footer :todos='todos'></my-footer>
+      <my-footer :todos='todos' :checkAllTodo='checkAllTodo' :clearAllTodo='clearAllTodo'> </my-footer>
     </div>
   </div>
 </div>
@@ -38,7 +38,7 @@ export default {
    }
  },
   methods:{
-      //往前添加一个数据
+    //往前添加一个数据
    addTodo( todoObj){
       this.todos.unshift(todoObj);
    },
@@ -56,6 +56,18 @@ export default {
      this.todos=this.todos.filter((todo)=>{
        return todo.id !== id
      })
+   },
+   //全选或者全不选
+   checkAllTodo(done){
+     this.todos.forEach((todo)=>{
+        todo.done=done;
+     })
+   },
+   //清除所有完成的todo
+   clearAllTodo(){
+      this.todos=this.todos.filter((todo)=>{
+        return !todo.done
+      })
    }
  }
 };
